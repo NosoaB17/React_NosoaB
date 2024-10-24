@@ -6,7 +6,6 @@ const TodoData = (props) => {
       <div>My name is : {name}</div>
       <div>I am {age} years old</div>
       <div>
-        {" "}
         Currently I live in {data.address} {data.country}
       </div>
       <div>Learn React</div>
