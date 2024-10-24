@@ -3,6 +3,10 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 
+const MyComponent = () => {
+  return <div>NosoaB & ReactLearning</div>;
+};
+
 const App = () => {
   const [count, setCount] = useState(0);
 
