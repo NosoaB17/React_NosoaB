@@ -1,10 +1,11 @@
 import { useState } from "react";
 
-const TodoNew = () => {
+const TodoNew = (props) => {
+  const { addNewTodo } = props;
   const [valueInput, setValueInput] = useState("nosoab");
 
   const handleClick = () => {
-    alert(`Welcome ${valueInput} to Website`);
+    addNewTodo(valueInput);
   };
 
   const handleOnChange = (name) => {
