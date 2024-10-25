@@ -11,12 +11,17 @@ const App = () => {
 
   const addNewTodo = (name) => {
     const newTodo = {
-      id: 17,
+      id: randomIntFromInterval(1, 100000),
       name: name,
     };
 
     setTodoList([...todoList, newTodo]);
   };
+
+  function randomIntFromInterval(min, max) {
+    // min and max included
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  }
 
   return (
     <div className="todo-container">
