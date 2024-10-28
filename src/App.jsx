@@ -5,6 +5,8 @@ import TodoNew from "./components/todo/TodoNew";
 
 import "./components/todo/todo.css";
 import ReactIcon from "./assets/react.svg";
+import Header from "./components/layout/Header";
+import Footer from "./components/layout/Footer";
 
 const App = () => {
   const [todoList, setTodoList] = useState([]);
@@ -28,17 +30,21 @@ const App = () => {
   };
 
   return (
-    <div className="todo-container">
-      <div className="todo-title">Todo List</div>
-      <TodoNew addNewTodo={addNewTodo} />
-      {todoList.length > 0 ? (
-        <TodoData todoList={todoList} deleteTodo={deleteTodo} />
-      ) : (
-        <div className="todo-image">
-          <img src={ReactIcon} className="logo" alt="react-icon" />
-        </div>
-      )}
-    </div>
+    <>
+      <Header />
+      <div className="todo-container">
+        <div className="todo-title">Todo List</div>
+        <TodoNew addNewTodo={addNewTodo} />
+        {todoList.length > 0 ? (
+          <TodoData todoList={todoList} deleteTodo={deleteTodo} />
+        ) : (
+          <div className="todo-image">
+            <img src={ReactIcon} className="logo" alt="react-icon" />
+          </div>
+        )}
+      </div>
+      <Footer />
+    </>
   );
 };
 
