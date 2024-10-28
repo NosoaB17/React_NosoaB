@@ -1,18 +1,20 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import App from "./App.jsx";
-import LoginPage from "./pages/LoginPage.jsx";
-import RegisterPage from "./pages/RegisterPage.jsx";
-import UserPage from "./pages/UserPage.jsx";
-import ProductPage from "./pages/ProductPage.jsx";
+import App from "./App";
+import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
+import UserPage from "./pages/UserPage";
+import BookPage from "./pages/BookPage";
 import "./styles/global.css";
-import TodoApp from "./components/todo/TodoApp.jsx";
+import TodoApp from "./components/todo/TodoApp";
+import ErrorPage from "./pages/Error";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    errorElement: <ErrorPage />,
     children: [
       { index: true, element: <TodoApp /> },
       {
@@ -20,8 +22,8 @@ const router = createBrowserRouter([
         element: <UserPage />,
       },
       {
-        path: "/products",
-        element: <ProductPage />,
+        path: "/books",
+        element: <BookPage />,
       },
     ],
   },
