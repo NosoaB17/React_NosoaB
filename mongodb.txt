@@ -1,0 +1,4 @@
+nosoab
+hFuJ9aGPhQ23z0rq
+
+mongodb+srv://nosoab:hFuJ9aGPhQ23z0rq@cluster0.bf8xt.mongodb.net/
