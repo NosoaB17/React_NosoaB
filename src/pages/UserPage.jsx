@@ -7,7 +7,6 @@ const UserPage = () => {
   const [dataUsers, setDataUsers] = useState([]);
 
   useEffect(() => {
-    console.log("Run useEffect");
     loadUser();
   }, []);
 
@@ -15,7 +14,6 @@ const UserPage = () => {
     const res = await fetchAllUserAPI();
     setDataUsers(res.data);
   };
-  console.log("Run render");
 
   return (
     <div style={{ padding: "20px" }}>

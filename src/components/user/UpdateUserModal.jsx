@@ -48,42 +48,39 @@ const UpdateUserModal = ({
   };
 
   return (
-    <div>
-      {" "}
-      <Modal
-        title="Update a User"
-        open={isModalUpdateOpen}
-        onOk={() => handleSubmitBtn()}
-        onCancel={() => resetAndCloseModal()}
-        maskClosable={false}
-        okText={"Save"}
-      >
-        <div style={{ display: "flex", gap: "15px", flexDirection: "column" }}>
-          <div>
-            <span>Id</span>
-            <Input value={id} disabled />
-          </div>
-          <div>
-            <span>FullName</span>
-            <Input
-              value={fullName}
-              onChange={(event) => {
-                setFullName(event.target.value);
-              }}
-            />
-          </div>
-          <div>
-            <span>Phone Number</span>
-            <Input
-              value={phone}
-              onChange={(event) => {
-                setPhone(event.target.value);
-              }}
-            />
-          </div>
+    <Modal
+      title="Update a User"
+      open={isModalUpdateOpen}
+      onOk={() => handleSubmitBtn()}
+      onCancel={() => resetAndCloseModal()}
+      maskClosable={false}
+      okText={"Save"}
+    >
+      <div style={{ display: "flex", gap: "15px", flexDirection: "column" }}>
+        <div>
+          <span>Id</span>
+          <Input value={id} disabled />
         </div>
-      </Modal>
-    </div>
+        <div>
+          <span>FullName</span>
+          <Input
+            value={fullName}
+            onChange={(event) => {
+              setFullName(event.target.value);
+            }}
+          />
+        </div>
+        <div>
+          <span>Phone Number</span>
+          <Input
+            value={phone}
+            onChange={(event) => {
+              setPhone(event.target.value);
+            }}
+          />
+        </div>
+      </div>
+    </Modal>
   );
 };
 

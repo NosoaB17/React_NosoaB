@@ -1,17 +1,31 @@
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
-import { Table } from "antd";
+import { Popconfirm, Table, notification } from "antd";
 import UpdateUserModal from "./UpdateUserModal";
 import { useState } from "react";
+import ViewUserDetail from "./ViewUserDetail";
+import { deleteUserAPI } from "../../services/apiService";
 
 const UserTable = ({ loadUser, dataUsers }) => {
   const [isModalUpdateOpen, setIsModalUpdateOpen] = useState(false);
   const [dataUpdate, setDataUpdate] = useState(null);
+  const [dataDetail, setDataDetail] = useState(null);
+  const [isDetailOpen, setIsDetailOpen] = useState(false);
   const columns = [
     {
       title: "Id",
       dataIndex: "_id",
       render: (_, record) => {
-        return <a href="#">{record._id}</a>;
+        return (
+          <a
+            href="#"
+            onClick={() => {
+              setDataDetail(record);
+              setIsDetailOpen(true);
+            }}
+          >
+            {record._id}
+          </a>
+        );
       },
     },
     {
@@ -34,11 +48,36 @@ const UserTable = ({ loadUser, dataUsers }) => {
               setIsModalUpdateOpen(true);
             }}
           />
-          <DeleteOutlined style={{ cursor: "pointer", color: "red" }} />
+          <Popconfirm
+            title="Delete User"
+            description="Are you sure to delete this user?"
+            onConfirm={() => handleDeleteUser(record._id)}
+            okText="Yes"
+            cancelText="No"
+            placement="left"
+          >
+            <DeleteOutlined style={{ cursor: "pointer", color: "red" }} />
+          </Popconfirm>
         </div>
       ),
     },
   ];
+
+  const handleDeleteUser = async (id) => {
+    const res = await deleteUserAPI(id);
+    if (res.data) {
+      notification.success({
+        message: "Delete user",
+        description: "Delete user success",
+      });
+      await loadUser();
+    } else {
+      notification.error({
+        message: "Error delete user",
+        description: JSON.stringify(res.message),
+      });
+    }
+  };
 
   return (
     <>
@@ -49,6 +88,12 @@ const UserTable = ({ loadUser, dataUsers }) => {
         dataUpdate={dataUpdate}
         setDataUpdate={setDataUpdate}
         loadUser={loadUser}
+      />
+      <ViewUserDetail
+        dataDetail={dataDetail}
+        setDataDetail={setDataDetail}
+        isDetailOpen={isDetailOpen}
+        setIsDetailOpen={setIsDetailOpen}
       />
     </>
   );
