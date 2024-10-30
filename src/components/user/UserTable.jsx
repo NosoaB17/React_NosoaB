@@ -1,11 +1,9 @@
-import { Space, Table, Tag } from "antd";
+import { Table } from "antd";
 import { fetchAllUserAPI } from "../../services/apiService";
 import { useEffect, useState } from "react";
 
 const UserTable = () => {
-  const [dataUsers, setDataUsers] = useState([
-    { _id: "Son", fullName: "BaoSOn", email: "BaoSOn@gmail.com" },
-  ]);
+  const [dataUsers, setDataUsers] = useState([]);
 
   useEffect(() => {
     console.log("Run useEffect");
