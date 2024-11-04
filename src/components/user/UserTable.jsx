@@ -94,6 +94,7 @@ const UserTable = ({ loadUser, dataUsers }) => {
         setDataDetail={setDataDetail}
         isDetailOpen={isDetailOpen}
         setIsDetailOpen={setIsDetailOpen}
+        loadUser={loadUser}
       />
     </>
   );
