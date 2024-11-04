@@ -5,12 +5,41 @@ import { useState } from "react";
 import ViewUserDetail from "./ViewUserDetail";
 import { deleteUserAPI } from "../../services/apiService";
 
-const UserTable = ({ loadUser, dataUsers }) => {
+const UserTable = ({
+  loadUser,
+  dataUsers,
+  current,
+  pageSize,
+  total,
+  setCurrent,
+  setPageSize,
+}) => {
   const [isModalUpdateOpen, setIsModalUpdateOpen] = useState(false);
   const [dataUpdate, setDataUpdate] = useState(null);
   const [dataDetail, setDataDetail] = useState(null);
   const [isDetailOpen, setIsDetailOpen] = useState(false);
+
+  const onChange = (pagination, filters, sorter, extra) => {
+    // Neu co thay doi trang : current
+    if (pagination && pagination.current) {
+      if (+pagination.current !== +current) {
+        setCurrent(+pagination.current);
+      }
+    }
+    if (pagination && pagination.pageSize) {
+      if (+pagination.pageSize !== +pageSize) {
+        setPageSize(+pagination.pageSize);
+      }
+    }
+    console.log("CheckOnCHange", { pagination, filters, sorter, extra });
+  };
   const columns = [
+    {
+      title: "STT",
+      render: (_, record, index) => {
+        return <>{index + 1}</>;
+      },
+    },
     {
       title: "Id",
       dataIndex: "_id",
@@ -81,7 +110,25 @@ const UserTable = ({ loadUser, dataUsers }) => {
 
   return (
     <>
-      <Table columns={columns} dataSource={dataUsers} rowKey={"_id"} />
+      <Table
+        columns={columns}
+        dataSource={dataUsers}
+        rowKey={"_id"}
+        pagination={{
+          current: current,
+          pageSize: pageSize,
+          showSizeChanger: true,
+          total: total,
+          showTotal: (total, range) => {
+            return (
+              <div>
+                {range[0]}-{range[1]} per {total} rows
+              </div>
+            );
+          },
+        }}
+        onChange={onChange}
+      />
       <UpdateUserModal
         isModalUpdateOpen={isModalUpdateOpen}
         setIsModalUpdateOpen={setIsModalUpdateOpen}
