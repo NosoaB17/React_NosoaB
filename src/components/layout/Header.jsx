@@ -3,12 +3,20 @@ import {
   HomeOutlined,
   AuditOutlined,
   UsergroupAddOutlined,
+  SettingOutlined,
+  LoginOutlined,
+  AliwangwangOutlined,
 } from "@ant-design/icons";
 import { Menu } from "antd";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../context/AuthContext";
 
 const Header = () => {
   const [current, setCurrent] = useState("");
+
+  const { user } = useContext(AuthContext);
+  console.log("Check Data:", user);
+
   const onClick = (e) => {
     console.log("click ", e);
     setCurrent(e.key);
@@ -30,6 +38,27 @@ const Header = () => {
       key: "books",
       icon: <AuditOutlined />,
     },
+
+    ...(!user.id
+      ? [
+          {
+            label: <Link to={"/login"}>Login</Link>,
+            key: "login",
+            icon: <LoginOutlined />,
+          },
+        ]
+      : []),
+
+    ...(user.id
+      ? [
+          {
+            label: `Welcome ${user.fullName}`,
+            key: "setting",
+            icon: <AliwangwangOutlined />,
+            children: [{ label: "Logout", key: "logout" }],
+          },
+        ]
+      : []),
   ];
 
   return (

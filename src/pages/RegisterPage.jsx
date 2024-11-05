@@ -1,6 +1,6 @@
-import { Button, Input, Form, notification, Row, Col } from "antd";
+import { Button, Input, Form, notification, Row, Col, Divider } from "antd";
 import { registerUserAPI } from "../services/apiService";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const RegisterPage = () => {
   const [form] = Form.useForm();
@@ -33,9 +33,10 @@ const RegisterPage = () => {
       form={form}
       layout="vertical"
       onFinish={onFinish}
-      style={{ margin: "10px" }}
+      style={{ margin: "30px" }}
       // onFinishFailed={onFinishFailed}
     >
+      <h3 style={{ textAlign: "center" }}>Sign up account</h3>
       <Row justify={"center"}>
         <Col xs={24} md={8}>
           {" "}
@@ -103,26 +104,33 @@ const RegisterPage = () => {
         </Col>
       </Row>
       <Row justify={"center"}>
-        <div>
-          <Button
-            type="primary"
-            onClick={() => {
-              form.submit();
-            }}
-          >
-            Register
-          </Button>
-          <Button
-            onClick={() => {
-              form.setFieldsValue({
-                email: "ngsn176@gmail.com",
-                fullName: "Ngo Bao Son",
-              });
-            }}
-          >
-            Test
-          </Button>
-        </div>
+        <Col xs={24} md={8}>
+          {" "}
+          <div>
+            <Button
+              type="primary"
+              onClick={() => {
+                form.submit();
+              }}
+            >
+              Register
+            </Button>
+            <Button
+              onClick={() => {
+                form.setFieldsValue({
+                  email: "ngsn176@gmail.com",
+                  fullName: "Ngo Bao Son",
+                });
+              }}
+            >
+              Test
+            </Button>
+          </div>
+          <Divider />
+          <div>
+            Already have an account ? <Link to={"/login"}>Sign in here</Link>
+          </div>
+        </Col>
       </Row>
     </Form>
   );
