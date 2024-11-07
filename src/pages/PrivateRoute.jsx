@@ -17,8 +17,7 @@ const PrivateRoute = (props) => {
       subTitle={"You need to log in to access the resource!"}
       extra={
         <Button type="primary">
-          {" "}
-          <Link href="/">
+          <Link to="/">
             <span>Back to Homepage</span>
           </Link>
         </Button>
