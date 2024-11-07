@@ -10,6 +10,7 @@ import TodoApp from "./components/todo/TodoApp";
 import ErrorPage from "./pages/Error";
 import { AuthWrapper } from "./components/context/AuthContext";
 import PrivateRoute from "./pages/PrivateRoute";
+import "nprogress/nprogress.css";
 
 const router = createBrowserRouter([
   {
